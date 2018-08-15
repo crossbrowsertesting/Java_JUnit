@@ -1,4 +1,4 @@
-package test.java.com.cbt.helper;
+package com.cbt.helper;
 
 import java.net.URL;
 
