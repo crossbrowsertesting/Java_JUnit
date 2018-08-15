@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite tests="1" failures="0" name="test.java.com.cbt.helper.CBTTest" time="21.242" errors="0" skipped="0">
+=======
+<testsuite tests="1" failures="0" name="test.java.com.cbt.helper.CBTTest" time="17.312" errors="0" skipped="0">
+>>>>>>> c1981c94f3aee5a2dec3ae81057eed51650f4cee
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="10.0.2+13"/>
@@ -65,5 +69,9 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
+<<<<<<< HEAD
   <testcase classname="test.java.com.cbt.helper.CBTTest" name="testToDo" time="21.242"/>
+=======
+  <testcase classname="test.java.com.cbt.helper.CBTTest" name="testToDo" time="17.312"/>
+>>>>>>> c1981c94f3aee5a2dec3ae81057eed51650f4cee
 </testsuite>
