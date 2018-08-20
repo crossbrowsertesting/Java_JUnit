@@ -1,6 +1,6 @@
 # target/
-**/target/**
-# */target/*
+# **/target/**
+*/target/*
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -16,4 +16,3 @@ target/surefire-reports/TEST-com.cbt.helper.AppTest.xml
 target/surefire-reports/TEST-com.cbt.helper.CBTTest.xml
 target/surefire-reports/com.cbt.helper.AppTest.txt
 target/surefire-reports/com.cbt.helper.CBTTest.txt
-
