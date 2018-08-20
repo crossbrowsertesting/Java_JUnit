@@ -50,6 +50,7 @@ public class CBTTest {
         if (driver != null) {
         api.setScore(score, driver.getSessionId().toString());
             driver.quit();
+            System.out.println(score + " TESTING PASS FAIL");
             //put the set score statement here.
         }
     }
