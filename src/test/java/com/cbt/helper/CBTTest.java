@@ -11,8 +11,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class CBTTest {
     private RemoteWebDriver driver;
-    //private CBTAPI api;
-    //private String score;
+    private CBTAPI api;
+    private String score;
 
     @Before
     public void setUp() throws Exception {
@@ -28,7 +28,7 @@ public class CBTTest {
         caps.setCapability("screenResolution", "1366x768");
         caps.setCapability("record_video", "true");     
         
-        //api = new CBTAPI(username, authkey);
+        api = new CBTAPI(username, authkey);
 
         String hubAddress = String.format("http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub", username, authkey);
         URL url = new URL(hubAddress);
@@ -43,15 +43,15 @@ public class CBTTest {
         driver.get("https://www.crossbrowsertesting.com");  
         //test 2:check what title equals.
         Assert.assertEquals("Cross Browser Testing Tool: 1500+ Real Browsers & Devices",driver.getTitle());
-        //score = "pass";
+        score = "pass";
     }
  
     @After
     public void tearDown() throws Exception{
         if (driver != null) {
-        // api.setScore(score, driver.getSessionId().toString());
+         api.setScore(score, driver.getSessionId().toString());
              driver.quit();
-        //     System.out.println(score + " TESTING PASS FAIL");
+            System.out.println(score + " TESTING PASS FAIL");
             //put the set score statement here.
         }
     }
