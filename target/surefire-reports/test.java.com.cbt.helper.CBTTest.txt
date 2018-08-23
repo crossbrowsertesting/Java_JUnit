@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: test.java.com.cbt.helper.CBTTest
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.293 sec
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.367 sec
->>>>>>> c1981c94f3aee5a2dec3ae81057eed51650f4cee
