@@ -21,5 +21,12 @@ public class CBTAPI {
                                                         .field("score", score)
                                                         .asJson();                                           
     }
+
+    public void record_video(String seleniumSessionId) throws UnirestException {
+        HttpResponse<JsonNode> response = Unirest.post("http://crossbrowsertesting.com/api/v3/selenium/{seleniumSessionId}/videos")
+                                                        .basicAuth(username, authkey)
+                                                        .routeParam("seleniumSessionId", seleniumSessionId)
+                                                        .asJson();                                                                                            
+    }
     
 }
