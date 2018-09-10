@@ -32,9 +32,8 @@ public class CBTTest {
 
         String hubAddress = String.format("http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub", username, authkey);
         URL url = new URL(hubAddress);
-        //score = "fail";
-        //use String.format()
         driver = new RemoteWebDriver(url, caps);
+        //record a video using the API instead of the capabilities above.
         api.record_video(driver.getSessionId().toString());
     }
        
@@ -50,6 +49,7 @@ public class CBTTest {
     @After
     public void tearDown() throws Exception{
         if (driver != null) {
+        //Set the score depending on the tests.
          api.setScore(score, driver.getSessionId().toString());
              driver.quit();
             System.out.println(score + " TESTING PASS FAIL");
