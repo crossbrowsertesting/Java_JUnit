@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-// ssh
+
 public class CBTTest {
     private RemoteWebDriver driver;
     private CBTAPI api;
