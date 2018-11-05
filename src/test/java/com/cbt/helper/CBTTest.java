@@ -22,9 +22,9 @@ public class CBTTest {
          
         DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("name", "CBT Java re-write");
-		caps.setCapability("browserName", "Internet Explorer");
-		caps.setCapability("version", "10"); // If this cap isn't specified, it will just get the latest one
-		caps.setCapability("platform", "Windows 7 64-Bit");
+		caps.setCapability("browserName", "Microsoft Edge");
+		caps.setCapability("version", "15"); // If this cap isn't specified, it will just get the latest one
+		caps.setCapability("platform", "Windows 10");
         caps.setCapability("screenResolution", "1366x768");
         //caps.setCapability("record_video", "true");
        
