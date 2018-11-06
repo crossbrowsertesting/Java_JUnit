@@ -42,8 +42,9 @@ public class CBTTest {
         //test 1: Get title.
         driver.get("https://www.whatsmybrowser.org");  
         //test 2:check what title equals.
-        // Assert.assertEquals("Cross Browser Testing Tool: 1500+ Real Browsers & Devices",driver.getTitle());
-        score = "pass";
+         Assert.assertEquals("What browser am I using?",driver.getTitle());
+         System.out.println(driver.getTitle());
+        score = "Pass";
     }
  
     @After
@@ -52,7 +53,7 @@ public class CBTTest {
         //Set the score depending on the tests.
          api.setScore(score, driver.getSessionId().toString());
              driver.quit();
-            System.out.println(score + " TESTING PASS FAIL");
+            System.out.println(score);
         }
     }
 }
