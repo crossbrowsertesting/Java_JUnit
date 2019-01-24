@@ -11,8 +11,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class CBTTest {
     private RemoteWebDriver driver;
-    private CBTAPI api;
-    private String score;
+     private CBTAPI api;
+     private String score;
 
     @Before
     public void setUp() throws Exception {
@@ -21,20 +21,23 @@ public class CBTTest {
         System.out.println(username);
          
         DesiredCapabilities caps = new DesiredCapabilities();
-		caps.setCapability("name", "CBT Java re-write");
+        caps.setCapability("name", "CBT Java");
 		caps.setCapability("browserName", "Chrome");
-		// caps.setCapability("version", "15"); // If this cap isn't specified, it will just get the latest one
 		caps.setCapability("platform", "Windows 10");
         caps.setCapability("screenResolution", "1366x768");
-        //caps.setCapability("record_video", "true");
+        caps.setCapability("record_video", "true");
+        // caps.setCapability("version", "15"); // If this cap isn't specified, it will just get the latest one
+        // caps.setCapability("build", "1.0"); //Set a build number.
+        // caps.setCapability("record_network", "true"); 
+
        
-        api = new CBTAPI(username, authkey);
+     api = new CBTAPI(username, authkey);
 
         String hubAddress = String.format("http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub", username, authkey);
         URL url = new URL(hubAddress);
         driver = new RemoteWebDriver(url, caps);
         //record a video using the API instead of the capabilities above.
-        api.record_video(driver.getSessionId().toString());
+         api.record_video(driver.getSessionId().toString());
     }
        
     @Test
@@ -44,14 +47,14 @@ public class CBTTest {
         //test 2:check what title equals.
          Assert.assertEquals("What browser am I using?",driver.getTitle());
          System.out.println(driver.getTitle());
-        score = "Pass";
+         score = "Pass";
     }
  
     @After
     public void tearDown() throws Exception{
         if (driver != null) {
         //Set the score depending on the tests.
-         api.setScore(score, driver.getSessionId().toString());
+          api.setScore(score, driver.getSessionId().toString());
              driver.quit();
             System.out.println(score);
         }
