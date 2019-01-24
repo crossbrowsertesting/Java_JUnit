@@ -23,18 +23,18 @@ public class CBTAPI {
 
     public void setScore(String score, String seleniumSessionId) throws UnirestException {
         HttpResponse<JsonNode> response = Unirest.put("http://crossbrowsertesting.com/api/v3/selenium/{seleniumSessionId}")
-                                                        .basicAuth(username, authkey)
-                                                        .routeParam("seleniumSessionId", seleniumSessionId)
-                                                        .field("action","set_score")
-                                                        .field("score", score)
-                                                        .asJson();                                           
+                            .basicAuth(username, authkey)
+                            .routeParam("seleniumSessionId", seleniumSessionId)
+                            .field("action","set_score")
+                            .field("score", score)
+                            .asJson();                                       
     }
 
     public void record_video(String seleniumSessionId) throws UnirestException {
         HttpResponse<JsonNode> response = Unirest.post("http://crossbrowsertesting.com/api/v3/selenium/{seleniumSessionId}/videos")
-                                                        .basicAuth(username, authkey)
-                                                        .routeParam("seleniumSessionId", seleniumSessionId)
-                                                        .asJson();                                                                                            
+                            .basicAuth(username, authkey)
+                            .routeParam("seleniumSessionId", seleniumSessionId)
+                            .asJson();                                                                                            
     }
     
 }
