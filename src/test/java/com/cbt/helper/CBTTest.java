@@ -21,10 +21,16 @@ public class CBTTest {
         System.out.println(username);
 
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("name", "CBT Java");
-        caps.setCapability("browserName", "Chrome");
-        caps.setCapability("platform", "Windows 10");
-        caps.setCapability("screenResolution", "1366x768");
+        caps.setCapability("name", "Victor Test 10");
+        caps.setCapability("browserName", "Safari");
+        caps.setCapability("deviceName", "iPhone XR Simulator");
+        caps.setCapability("platformVersion", "12.0");
+        caps.setCapability("platformName", "iOS");
+        caps.setCapability("deviceOrientation", "portrait");
+        // caps.setCapability("name", "CBT Java");
+        // caps.setCapability("browserName", "Chrome");
+        // caps.setCapability("platform", "Windows 10");
+        // caps.setCapability("screenResolution", "1366x768");
         caps.setCapability("record_video", "true");
         // caps.setCapability("version", "15"); // If this cap isn't specified, it will
         // just get the latest one
@@ -44,9 +50,9 @@ public class CBTTest {
     @Test
     public void testToDo() {
         // test 1: Get title.
-        driver.get("https://www.whatsmybrowser.org");
+        driver.get("https://disney.com");
         // test 2:check what title equals.
-        Assert.assertEquals("What browser am I using?", driver.getTitle());
+        Assert.assertEquals("Disney.com | The official home for all things Disney", driver.getTitle());
         System.out.println(driver.getTitle());
         score = "Pass";
     }
