@@ -26,7 +26,14 @@
         <artifactId>unirest-java</artifactId>
         <version>1.4.9</version>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/com.crossbrowsertesting/CBT_Helper -->
+<dependency>
+    <groupId>com.crossbrowsertesting</groupId>
+    <artifactId>CBT_Helper</artifactId>
+    <version>1.0.0</version>
+</dependency>
   </dependencies>
+  
 
       <properties>
         <maven.compiler.source>1.6</maven.compiler.source>

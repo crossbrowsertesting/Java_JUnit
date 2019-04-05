@@ -8,6 +8,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import com.crossbrowsertesting.AutomatedTest;
+import com.crossbrowsertesting.Builders;
+
+import org.openqa.selenium.By;//used if we use the .By in the find elem
+import org.openqa.selenium.JavascriptExecutor; 
 
 public class CBTTest {
     private RemoteWebDriver driver;
@@ -23,21 +28,11 @@ public class CBTTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("name", "Basic Test Example");
         caps.setCapability("build", "1.0");
-        caps.setCapability("browserName", "MicrosoftEdge");
-        caps.setCapability("version", "18");
-        caps.setCapability("platform", "Windows 10");
-        caps.setCapability("screenResolution", "1366x768");
-        // caps.setCapability("name", "Victor Test 10");
-        // caps.setCapability("browserName", "Safari");
-        // caps.setCapability("deviceName", "iPhone XR Simulator");
-        // caps.setCapability("platformVersion", "12.0");
-        // caps.setCapability("platformName", "iOS");
-        // caps.setCapability("deviceOrientation", "portrait");
-        // caps.setCapability("name", "CBT Java");
-        // caps.setCapability("browserName", "Chrome");
-        // caps.setCapability("platform", "Windows 10");
-        // caps.setCapability("screenResolution", "1366x768");
-        caps.setCapability("record_video", "true");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("deviceName", "Galaxy S8");
+        caps.setCapability("platformVersion", "8.0");
+        caps.setCapability("platformName", "Android");
+        caps.setCapability("deviceOrientation", "portrait");
         // caps.setCapability("version", "15"); // If this cap isn't specified, it will
         // just get the latest one
         
@@ -53,22 +48,43 @@ public class CBTTest {
         api.record_video(driver.getSessionId().toString());
     }
 
+
     @Test
     public void testToDo() {
+    
         // test 1: Get title.
         driver.get("https://disney.com");
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        for(int i = 0; i < 10; i++){
+            js.executeScript("window.scrollBy(0, 10)");
+        }
         // test 2:check what title equals.
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         Assert.assertEquals("Disney.com | The official home for all things Disney", driver.getTitle());
         System.out.println(driver.getTitle());
         score = "Pass";
-    }
+        driver.findElementByCssSelector("#ref-1-5 > div > ul > span:nth-child(1) > div > div > a > div > div > img").click();
+        //elem = driver.findElement(By.xpath("//*[@id="ref-1-5"]/div/ul/span[1]/div/div/a/div/div/img")).click();
+        //driver.findElementByXPath('//*[@id="ref-1-5"]/div/ul/span[1]/div/div/a/div/div/img').click();
+        AutomatedTest myTest = new AutomatedTest(driver.getSessionId().toString());
+        try {
+            String username = System.getenv("CBTUSRNAME").replaceAll("@", "%40");
+            String authkey = System.getenv("CBTAUTH");
+            Builders.login(username, authkey);
+            myTest.takeSnapshot();
+            myTest.setScore(score);
+            }catch (Exception e){
+                System.out.println("error setting score: " + e.getMessage());
+            }
+
+        }
+    
 
     @After
     public void tearDown() throws Exception {
         if (driver != null) {
             // Set the score depending on the tests.
-            api.setScore(score, driver.getSessionId().toString());
+            //api.setScore(score, driver.getSessionId().toString()):
             driver.quit();
             System.out.println(score);
         }
