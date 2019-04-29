@@ -12,12 +12,20 @@ import com.crossbrowsertesting.AutomatedTest;
 import com.crossbrowsertesting.Builders;
 
 import org.openqa.selenium.By;//used if we use the .By in the find elem
-import org.openqa.selenium.JavascriptExecutor; 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement; 
 
 public class CBTTest {
     private RemoteWebDriver driver;
     private CBTAPI api;
     private String score;
+
+    public void scroll() throws Exception {
+        
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy(0, 250)");
+
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -28,24 +36,21 @@ public class CBTTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("name", "Basic Test Example");
         caps.setCapability("build", "1.0");
-        caps.setCapability("browserName", "Chrome");
-        caps.setCapability("deviceName", "Galaxy S8");
-        caps.setCapability("platformVersion", "8.0");
-        caps.setCapability("platformName", "Android");
+        caps.setCapability("browserName", "Safari");
+        caps.setCapability("deviceName", "iPhone 7 Simulator");
+        caps.setCapability("platformVersion", "10.2");
+        caps.setCapability("platformName", "iOS");
         caps.setCapability("deviceOrientation", "portrait");
-        // caps.setCapability("version", "15"); // If this cap isn't specified, it will
-        // just get the latest one
-        
-        // caps.setCapability("build", "1.0"); //Set a build number.
-        // caps.setCapability("record_network", "true");
+        caps.setCapability("record_video", "true");
 
         api = new CBTAPI(username, authkey);
 
         String hubAddress = String.format("http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub", username, authkey);
         URL url = new URL(hubAddress);
         driver = new RemoteWebDriver(url, caps);
-        // record a video using the API instead of the capabilities above.
-        api.record_video(driver.getSessionId().toString());
+
+        // record a video using the API instead of the capabilities above. if this and Caps is on it will record 2 and make it seem like 2 tests happened. 
+        //api.record_video(driver.getSessionId().toString());
     }
 
 
@@ -53,19 +58,38 @@ public class CBTTest {
     public void testToDo() {
     
         // test 1: Get title.
-        driver.get("https://disney.com");
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        for(int i = 0; i < 10; i++){
-            js.executeScript("window.scrollBy(0, 10)");
-        }
-        // test 2:check what title equals.
+         driver.get("https://dlnext.acm.org/toc/csur/current");
+
+        //for desktops. 
         //driver.manage().window().maximize();
-        Assert.assertEquals("Disney.com | The official home for all things Disney", driver.getTitle());
+
+        // test 2:check what title equals.
+        Assert.assertEquals("CSUR: Vol 52, No 2", driver.getTitle());
         System.out.println(driver.getTitle());
+        
+        
+        int tries = 0;
+        WebElement button = null; 
+        while (tries < 10) {
+            try{
+            button = driver.findElementByCssSelector("#pb-page-content > div > header > div.header__fixed-items.fixed.auto-hide-bar.fixed-element > div.container.header--first-row > div.pull-left > div.header__logo1 > a > img");
+            break;
+            }catch (Exception e) {
+                //System.out.println("error finding elem: " + e.getMessage());
+                try{
+                    scroll();
+                    
+                }catch(Exception e2) {
+                    System.out.println("error scrolling: " + e2.getMessage());
+                }
+                tries++;
+            }
+        }
+        if (button != null) {
+            button.click();
+        }
         score = "Pass";
-        driver.findElementByCssSelector("#ref-1-5 > div > ul > span:nth-child(1) > div > div > a > div > div > img").click();
-        //elem = driver.findElement(By.xpath("//*[@id="ref-1-5"]/div/ul/span[1]/div/div/a/div/div/img")).click();
-        //driver.findElementByXPath('//*[@id="ref-1-5"]/div/ul/span[1]/div/div/a/div/div/img').click();
+        
         AutomatedTest myTest = new AutomatedTest(driver.getSessionId().toString());
         try {
             String username = System.getenv("CBTUSRNAME").replaceAll("@", "%40");
@@ -83,8 +107,10 @@ public class CBTTest {
     @After
     public void tearDown() throws Exception {
         if (driver != null) {
+
             // Set the score depending on the tests.
-            //api.setScore(score, driver.getSessionId().toString()):
+            //api.setScore(score, driver.getSessionId().toString());
+            
             driver.quit();
             System.out.println(score);
         }
