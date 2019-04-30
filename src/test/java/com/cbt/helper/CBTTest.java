@@ -34,7 +34,7 @@ public class CBTTest {
         System.out.println(username);
 
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("name", "Basic Test Example");
+        caps.setCapability("name", "Atypon Testing");
         caps.setCapability("build", "1.0");
         caps.setCapability("browserName", "Safari");
         caps.setCapability("deviceName", "iPhone 7 Simulator");
@@ -110,7 +110,7 @@ public class CBTTest {
 
             // Set the score depending on the tests.
             //api.setScore(score, driver.getSessionId().toString());
-            
+
             driver.quit();
             System.out.println(score);
         }
