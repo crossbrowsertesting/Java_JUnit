@@ -6,19 +6,26 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Assert;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import com.crossbrowsertesting.AutomatedTest;
-import com.crossbrowsertesting.Builders;
-
 import org.openqa.selenium.By;//used if we use the .By in the find elem
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement; 
+
+import com.crossbrowsertesting.AutomatedTest;
+import com.crossbrowsertesting.Builders;
+
+import com.applitools.eyes.selenium.Eyes;
+import com.applitools.eyes.RectangleSize;
+
 
 public class CBTTest {
     private RemoteWebDriver driver;
     private CBTAPI api;
     private String score;
+    private Eyes eyes;
+    
 
     public void scroll() throws Exception {
         
@@ -45,6 +52,9 @@ public class CBTTest {
 
         api = new CBTAPI(username, authkey);
 
+        eyes = new Eyes();
+        eyes.setApiKey(System.getenv("APPLITOOLS"));
+
         String hubAddress = String.format("http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub", username, authkey);
         URL url = new URL(hubAddress);
         driver = new RemoteWebDriver(url, caps);
@@ -56,18 +66,28 @@ public class CBTTest {
 
     @Test
     public void testToDo() {
-    
-        // test 1: Get title.
+        // open a new instance of eyes
+        //for desktops
+        //eyes.open(driver, "CrossBrowserTesting", "My first Selenium Java test!",
+               // new RectangleSize(800, 600));
+
+        //for mobiles. you dont need the RectangleSize()
+        eyes.open(driver, "Atypon", "Testing for Atypon");
+
+        // Get Site.
          driver.get("https://dlnext.acm.org/toc/csur/current");
+
+        // Visual checkpoint
+        eyes.checkWindow("Search within CSUR");
 
         //for desktops. 
         //driver.manage().window().maximize();
 
-        // test 2:check what title equals.
+        // Test 1:check what title equals.
         Assert.assertEquals("CSUR: Vol 52, No 2", driver.getTitle());
         System.out.println(driver.getTitle());
         
-        
+        //Test 2
         int tries = 0;
         WebElement button = null; 
         while (tries < 10) {
@@ -88,6 +108,7 @@ public class CBTTest {
         if (button != null) {
             button.click();
         }
+        eyes.close();
         score = "Pass";
         
         AutomatedTest myTest = new AutomatedTest(driver.getSessionId().toString());
@@ -112,6 +133,7 @@ public class CBTTest {
             //api.setScore(score, driver.getSessionId().toString());
 
             driver.quit();
+            eyes.abortIfNotClosed();
             System.out.println(score);
         }
     }

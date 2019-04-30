@@ -9,6 +9,23 @@
   <url>http://maven.apache.org</url>
 
   <dependencies>
+   <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20170516</version>
+        </dependency>
+  <!-- Required for Java 10 -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+   <!-- This is the Applitools Selenium Java SDK -->
+        <dependency>
+            <groupId>com.applitools</groupId>
+            <artifactId>eyes-selenium-java3</artifactId>
+            <version>RELEASE</version>
+        </dependency>
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
