@@ -47,10 +47,10 @@ public class CBTTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("name", "Atypon Testing");
         caps.setCapability("build", "1.0");
-        caps.setCapability("browserName", "Safari");
-        caps.setCapability("deviceName", "iPhone 7 Simulator");
-        caps.setCapability("platformVersion", "10.2");
-        caps.setCapability("platformName", "iOS");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("deviceName", "Galaxy S7");
+        caps.setCapability("platformVersion", "7.0");
+        caps.setCapability("platformName", "Android");
         caps.setCapability("deviceOrientation", "portrait");
         caps.setCapability("record_video", "true");
 
@@ -124,7 +124,11 @@ public class CBTTest {
             System.out.println("found elem");
         }
         Assert.assertEquals("ACM Digital Library - Beta version", driver.getTitle());
+
+        eyes.checkWindow("Search");
+
         System.out.println(driver.getTitle());
+        
 
         eyes.close();
         score = "Pass";
