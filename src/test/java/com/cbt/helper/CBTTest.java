@@ -47,11 +47,18 @@ public class CBTTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("name", "Atypon Testing");
         caps.setCapability("build", "1.0");
-        caps.setCapability("browserName", "Chrome");
-        caps.setCapability("deviceName", "Galaxy S7");
-        caps.setCapability("platformVersion", "7.0");
-        caps.setCapability("platformName", "Android");
+        // caps.setCapability("browserName", "Chrome");
+        // caps.setCapability("deviceName", "Galaxy S7");
+        // caps.setCapability("platformVersion", "7.0");
+        // caps.setCapability("platformName", "Android");
+        // caps.setCapability("deviceOrientation", "portrait");
+
+        caps.setCapability("browserName", "Safari");
+        caps.setCapability("deviceName", "iPad Pro Simulator");
+        caps.setCapability("platformVersion", "11.0");
+        caps.setCapability("platformName", "iOS");
         caps.setCapability("deviceOrientation", "portrait");
+
         caps.setCapability("record_video", "true");
 
         api = new CBTAPI(username, authkey);
