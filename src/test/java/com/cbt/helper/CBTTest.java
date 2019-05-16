@@ -47,17 +47,25 @@ public class CBTTest {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("name", "Atypon Testing");
         caps.setCapability("build", "1.0");
+        //Mobile
         // caps.setCapability("browserName", "Chrome");
         // caps.setCapability("deviceName", "Galaxy S7");
         // caps.setCapability("platformVersion", "7.0");
         // caps.setCapability("platformName", "Android");
         // caps.setCapability("deviceOrientation", "portrait");
 
-        caps.setCapability("browserName", "Safari");
-        caps.setCapability("deviceName", "iPad Pro Simulator");
-        caps.setCapability("platformVersion", "11.0");
-        caps.setCapability("platformName", "iOS");
-        caps.setCapability("deviceOrientation", "portrait");
+        //Mobile
+        // caps.setCapability("browserName", "Safari");
+        // caps.setCapability("deviceName", "iPad Pro Simulator");
+        // caps.setCapability("platformVersion", "11.0");
+        // caps.setCapability("platformName", "iOS");
+        // caps.setCapability("deviceOrientation", "portrait");
+
+        //Desktop
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "74x64");
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("screenResolution", "2560x1920");
 
         caps.setCapability("record_video", "true");
 
@@ -83,19 +91,20 @@ public class CBTTest {
         // new RectangleSize(800, 600));
 
         // for mobiles. you dont need the RectangleSize()
-        eyes.open(driver, "Atypon", "Testing for Atypon");
+        eyes.open(driver, "Max Window", "Testing for Window Maximize");
 
         // Get Site.
-        driver.get("https://dlnext.acm.org/toc/csur/current");
+        driver.get("https://www.google.com");
 
         // Visual checkpoint
-        eyes.checkWindow("Search within CSUR");
+        eyes.checkWindow("Google Search");
 
         // for desktops.
-        // driver.manage().window().maximize();
+        driver.manage().window().maximize();
+        System.out.println("window maximized.");
 
         // Test 1:check what title equals.
-        Assert.assertEquals("CSUR: Vol 52, No 2", driver.getTitle());
+        Assert.assertEquals("Google", driver.getTitle());
         System.out.println(driver.getTitle());
 
         // Test 2
@@ -105,7 +114,7 @@ public class CBTTest {
         while (tries < 10) {
             try {
                 button = driver.findElementByCssSelector(
-                        "#pb-page-content > div > header > div.header__fixed-items.fixed.auto-hide-bar.fixed-element > div.container.header--first-row > div.pull-left > div.header__logo1 > a > img");
+                        "#hptl > a:nth-child(1)");
                 break;
             } catch (Exception e) {
                 // System.out.println("error finding elem: " + e.getMessage());
@@ -126,13 +135,13 @@ public class CBTTest {
 
         WebElement logo = null;
         logo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
-                "#pb-page-content > div > main > div.c-hero-wrapper > div > div.c-hero__content > div > img")));
+                "body > main > div > div > p")));
         if (logo != null) {
             System.out.println("found elem");
         }
-        Assert.assertEquals("ACM Digital Library - Beta version", driver.getTitle());
+        Assert.assertEquals("About | Google", driver.getTitle());
 
-        eyes.checkWindow("Search");
+        eyes.checkWindow("Our");
 
         System.out.println(driver.getTitle());
         
