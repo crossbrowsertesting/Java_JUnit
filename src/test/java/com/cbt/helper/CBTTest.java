@@ -66,7 +66,7 @@ public class CBTTest {
         caps.setCapability("version", "74x64");
         caps.setCapability("platform", "Windows 10");
         caps.setCapability("screenResolution", "2560x1920");
-
+        //testy
         caps.setCapability("record_video", "true");
 
         api = new CBTAPI(username, authkey);
