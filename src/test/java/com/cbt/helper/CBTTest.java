@@ -45,7 +45,7 @@ public class CBTTest {
         System.out.println(username);
 
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("name", "Atypon Testing");
+        caps.setCapability("name", "Automation testing for .165");
         caps.setCapability("build", "1.0");
         //Mobile
         // caps.setCapability("browserName", "Chrome");
@@ -55,17 +55,17 @@ public class CBTTest {
         // caps.setCapability("deviceOrientation", "portrait");
 
         //Mobile
-        // caps.setCapability("browserName", "Safari");
-        // caps.setCapability("deviceName", "iPad Pro Simulator");
-        // caps.setCapability("platformVersion", "11.0");
-        // caps.setCapability("platformName", "iOS");
-        // caps.setCapability("deviceOrientation", "portrait");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("deviceName", "Nexus 6");
+        caps.setCapability("platformVersion", "5.0");
+        caps.setCapability("platformName", "Android");
+        caps.setCapability("deviceOrientation", "portrait");
 
         //Desktop
-        caps.setCapability("browserName", "Chrome");
-        caps.setCapability("version", "74x64");
-        caps.setCapability("platform", "Windows 10");
-        caps.setCapability("screenResolution", "2560x1920");
+        // caps.setCapability("browserName", "Chrome");
+        // caps.setCapability("version", "74x64");
+        // caps.setCapability("platform", "Windows 10");
+        // caps.setCapability("screenResolution", "2560x1920");
         //testy
         caps.setCapability("record_video", "true");
 
@@ -91,7 +91,7 @@ public class CBTTest {
         // new RectangleSize(800, 600));
 
         // for mobiles. you dont need the RectangleSize()
-        eyes.open(driver, "Max Window", "Testing for Window Maximize");
+        //eyes.open(driver, "Max Window", "Testing for Window Maximize");
 
         // Get Site.
         driver.get("https://www.google.com");
@@ -100,8 +100,8 @@ public class CBTTest {
         eyes.checkWindow("Google Search");
 
         // for desktops.
-        driver.manage().window().maximize();
-        System.out.println("window maximized.");
+        // driver.manage().window().maximize();
+        // System.out.println("window maximized.");
 
         // Test 1:check what title equals.
         Assert.assertEquals("Google", driver.getTitle());
