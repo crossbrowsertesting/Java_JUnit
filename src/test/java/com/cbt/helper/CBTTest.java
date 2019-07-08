@@ -45,28 +45,22 @@ public class CBTTest {
         System.out.println(username);
 
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("name", "Automation testing for .165");
+        caps.setCapability("name", "Make it work");
         caps.setCapability("build", "1.0");
+        
         //Mobile
         // caps.setCapability("browserName", "Chrome");
-        // caps.setCapability("deviceName", "Galaxy S7");
-        // caps.setCapability("platformVersion", "7.0");
+        // caps.setCapability("deviceName", "Nexus 6");
+        // caps.setCapability("platformVersion", "5.0");
         // caps.setCapability("platformName", "Android");
         // caps.setCapability("deviceOrientation", "portrait");
 
-        //Mobile
-        caps.setCapability("browserName", "Chrome");
-        caps.setCapability("deviceName", "Nexus 6");
-        caps.setCapability("platformVersion", "5.0");
-        caps.setCapability("platformName", "Android");
-        caps.setCapability("deviceOrientation", "portrait");
-
         //Desktop
-        // caps.setCapability("browserName", "Chrome");
-        // caps.setCapability("version", "74x64");
-        // caps.setCapability("platform", "Windows 10");
-        // caps.setCapability("screenResolution", "2560x1920");
-        //testy
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "74x64");
+        caps.setCapability("platform", "Windows 10");
+        //this will affect CBT RES not EYES RES
+        //caps.setCapability("screenResolution", "2560x1920");
         caps.setCapability("record_video", "true");
 
         api = new CBTAPI(username, authkey);
@@ -87,8 +81,10 @@ public class CBTTest {
     public void testToDo() {
         // open a new instance of eyes
         // for desktops
-        // eyes.open(driver, "CrossBrowserTesting", "My first Selenium Java test!",
-        // new RectangleSize(800, 600));
+        eyes.open(driver, "CrossBrowserTesting", "Name of test for EYES");
+        // use if you want to have a specific resolution. 
+        // eyes.open(driver, "CrossBrowserTesting", "Name of test for EYES",new RectangleSize(800, 600));
+        
 
         // for mobiles. you dont need the RectangleSize()
         //eyes.open(driver, "Max Window", "Testing for Window Maximize");
@@ -100,7 +96,7 @@ public class CBTTest {
         eyes.checkWindow("Google Search");
 
         // for desktops.
-        // driver.manage().window().maximize();
+        driver.manage().window().maximize();
         // System.out.println("window maximized.");
 
         // Test 1:check what title equals.
